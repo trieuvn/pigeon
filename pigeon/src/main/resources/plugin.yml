@@ -1,0 +1,6 @@
+name: pigeon
+version: '${project.version}'
+main: org.pigeon.Pigeon
+api-version: 1.20
+commands:
+  pigeon:
