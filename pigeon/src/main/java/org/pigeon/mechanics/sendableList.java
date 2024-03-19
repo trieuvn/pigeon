@@ -1,5 +1,7 @@
 package org.pigeon.mechanics;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -22,10 +24,12 @@ public class sendableList extends config implements InventoryHolder{
     private Player player;
     public sendableList(Player player, String id){
         Location loc = player.getLocation();
-        Inventory inventory = Bukkit.createInventory(new sendableListHolder(), 18);
-        for (Player p : Bukkit.getServer().getOnlinePlayers()){
-            if (!p.isOp() && p != player && p.getLocation().distance(loc) >= MAX_DISTANCE){
-                ItemStack a = ItemHead.getItem(p);
+        Component sendableListGuiTitle = MiniMessage.miniMessage().deserialize("<black><bold>Danh sách người chơi");
+        Inventory inventory = Bukkit.createInventory(new sendableListHolder(), 18, sendableListGuiTitle.asComponent());
+        for (Player sendablePlayers : Bukkit.getServer().getOnlinePlayers()){
+            // Check player khác world
+            if (player.getWorld() == sendablePlayers.getWorld() && !sendablePlayers.isOp() && sendablePlayers != player && sendablePlayers.getLocation().distance(loc) >= MAX_DISTANCE){
+                ItemStack a = ItemHead.getItem(sendablePlayers);
                 inventory.addItem(a);
             }
         }

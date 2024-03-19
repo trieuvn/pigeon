@@ -83,7 +83,7 @@ public class EventListeners implements Listener {
             if (target != null){
                 pigeonList.getpigeon(sendableList.getID(owner)).send(owner,target);
                 owner.closeInventory();
-                Title.send(owner,"","§aThành Công",Duration.ofSeconds(0),Duration.ofSeconds(1),Duration.ofSeconds(1));
+                Title.send(owner,"","§aGửi thành công",Duration.ofSeconds(0),Duration.ofSeconds(1),Duration.ofSeconds(1));
             }
             event.setCancelled(true);
         }
@@ -94,7 +94,7 @@ public class EventListeners implements Listener {
     public void pigeonInventorySelect(InventoryClickEvent event){
         if (event.getInventory().getHolder() instanceof pigeonInventoryHolder){
             if (event.isShiftClick())   event.setCancelled(true);
-            if (event.getCurrentItem() != null && event.getCurrentItem().getType() == Material.WHITE_STAINED_GLASS_PANE){
+            if (event.getCurrentItem() != null && event.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE){
                 event.setCancelled(true);
                 return;
             }

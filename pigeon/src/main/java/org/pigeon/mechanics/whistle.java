@@ -39,7 +39,7 @@ public class whistle{
         else {
             pigeon.flyAway();
         }
-        playsound(player);
+        playSound(player);
     }
 
 
@@ -51,7 +51,7 @@ public class whistle{
     }
 
     //Tạo âm thanh
-    public static void playsound(Player player){
+    public static void playSound(Player player){
         player.playSound(player.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_0,100,50);
     }
 
