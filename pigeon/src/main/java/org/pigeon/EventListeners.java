@@ -27,8 +27,7 @@ public class EventListeners implements Listener {
     public void onPlayerUseItem(PlayerInteractEvent event){
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR){
             if (event.getHand() != null && event.getHand() == EquipmentSlot.HAND){
-                if (event.getItem() == null)    return;
-                if(whistle.isWhistle(event.getItem())) {
+                if(event.getItem() != null && event.getItem().getItemMeta().hasCustomModelData() && whistle.isWhistle(event.getItem())) {
                     if (pigeonList.getpigeon(ItemLore.getLore(event.getItem(), 0)).getState() != 0){
                         Title.send(event.getPlayer(),"","§aĐang bận",Duration.ofSeconds(0),Duration.ofSeconds(1),Duration.ofSeconds(1));
                         event.setCancelled(true);
@@ -55,7 +54,7 @@ public class EventListeners implements Listener {
     //Khi player chuột trái vào Whitsle để mở danh sách gửi entity
     @EventHandler
     public void setPigeonLand(PlayerInteractEvent event){
-        if (event.getItem() != null && whistle.isWhistle(event.getItem())){
+        if (event.getItem() != null && event.getItem().getItemMeta().hasCustomModelData() && whistle.isWhistle(event.getItem())){
             if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
                 if (pigeonList.getpigeon(ItemLore.getLore(event.getItem(), 0)).getState() != 0){
                     Title.send(event.getPlayer(),"","§aĐang bận",Duration.ofSeconds(0),Duration.ofSeconds(1),Duration.ofSeconds(1));

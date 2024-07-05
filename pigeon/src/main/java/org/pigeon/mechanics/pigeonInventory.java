@@ -2,12 +2,14 @@ package org.pigeon.mechanics;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.pigeon.Holders.pigeonInventoryHolder;
 
@@ -37,7 +39,12 @@ public class pigeonInventory implements InventoryHolder{
         inventory.setItem(7,iv);
         inventory.setItem(8,iv);
         ItemStack book = new ItemStack(Material.WRITABLE_BOOK);
-        ItemMeta bookMeta = book.getItemMeta();
+        BookMeta bookMeta = (BookMeta) book.getItemMeta();
+
+        // Write the content on page 1
+        Component newContent = MiniMessage.miniMessage().deserialize("<blue>Ghi nội dung vào đây");
+        bookMeta.addPages(newContent);
+
 
         Component bookDisplayName = MiniMessage.miniMessage().deserialize("<#e6cf73><bold>Thư");
         List<Component> bookLores = new ArrayList<>();
